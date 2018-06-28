@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgAnimal"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentLeft="true"
@@ -21,12 +21,31 @@
 
         <TextView
             android:id="@+id/txtAnimalName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name of the Animal: "
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/imageView"
-            android:layout_toEndOf="@id/imageView"/>
+            android:layout_toEndOf="@+id/imgAnimal"
+            android:text="@string/animal_name"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/txtAnimalPower"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtAnimalName"
+            android:layout_toEndOf="@id/imgAnimal"
+            android:layout_toRightOf="@+id/imgAnimal"
+            android:text="Animal Power:"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/txtAnimalSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtAnimalPower"
+            android:layout_toEndOf="@+id/imgAnimal"
+            android:text="Animal Speed:"
+            android:textColor="#FFFFFF" />
 
     </RelativeLayout>
 </LinearLayout>

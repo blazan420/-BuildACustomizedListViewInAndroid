@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BuildACustomizedListViewInAndroid</string>
+    <string name="animal_name">Name of the Animal:</string>
 </resources>
