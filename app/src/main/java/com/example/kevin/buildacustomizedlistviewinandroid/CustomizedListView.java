@@ -1,6 +1,7 @@
 package com.example.kevin.buildacustomizedlistviewinandroid;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -51,11 +52,12 @@ public class CustomizedListView extends BaseAdapter {
 
         ImageView imgAnimal = (ImageView) view.findViewById(R.id.imgAnimal);
         final TextView txtAnimalName = (TextView) view.findViewById(R.id.txtAnimalName);
-        TextView txtAnimalPower = (TextView) view.findViewById(R.id.txtAnimalPower);
-        TextView txtAnimalSpeed = (TextView) view.findViewById(R.id.txtAnimalSpeed);
+        TextView txtAnimalPowerValue = (TextView) view.findViewById(R.id.txtAnimalPower);
+        TextView txtAnimalSpeedValue = (TextView) view.findViewById(R.id.txtAnimalSpeed);
 
-        String oldTxtAnimalPower = txtAnimalPower.getText().toString();
-        String oldTxtAnimalSpeed = txtAnimalSpeed.getText().toString();
+        String oldTxtAnimalNameValue = txtAnimalName.getText().toString();
+        String oldTxtAnimalPowerValue = txtAnimalPower.getText().toString();
+        String oldTxtAnimalSpeedValue = txtAnimalSpeed.getText().toString();
 
         //imgAnimal.setImageResource(animalImages[position]);
 
@@ -64,6 +66,11 @@ public class CustomizedListView extends BaseAdapter {
         Bitmap bm = BitmapFactory.decodeResource(context.getResources(), animalImages[position],
                 options);
         imgAnimal.setImageBitmap(bm);*/
+
+        imgAnimal.setImageBitmap(decodeSampledBitmapFromResource(context.getResources(),
+                animalImages[position], 30,30));
+
+        txtAnimalName.setText(oldTxtAnimalNameValue + animalNames[position]);
 
 
         return view;
@@ -92,6 +99,22 @@ public class CustomizedListView extends BaseAdapter {
         }
 
         return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
     }
 
     }
