@@ -15,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
 
         lstView = (ListView) findViewById(R.id.lstView);
 
+        CustomizedListView adapter = new CustomizedListView(MainActivity.this);
+
+        lstView.setAdapter(adapter);
+
 
 
 
