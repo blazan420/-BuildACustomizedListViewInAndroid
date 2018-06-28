@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CustomizedListView extends BaseAdapter {
 
@@ -52,12 +53,12 @@ public class CustomizedListView extends BaseAdapter {
 
         ImageView imgAnimal = (ImageView) view.findViewById(R.id.imgAnimal);
         final TextView txtAnimalName = (TextView) view.findViewById(R.id.txtAnimalName);
-        TextView txtAnimalPowerValue = (TextView) view.findViewById(R.id.txtAnimalPower);
-        TextView txtAnimalSpeedValue = (TextView) view.findViewById(R.id.txtAnimalSpeed);
+        final TextView txtAnimalPowerValue = (TextView) view.findViewById(R.id.txtAnimalPower);
+        final TextView txtAnimalSpeedValue = (TextView) view.findViewById(R.id.txtAnimalSpeed);
 
         String oldTxtAnimalNameValue = txtAnimalName.getText().toString();
-        String oldTxtAnimalPowerValue = txtAnimalPower.getText().toString();
-        String oldTxtAnimalSpeedValue = txtAnimalSpeed.getText().toString();
+        String oldTxtAnimalPowerValue = txtAnimalPowerValue.getText().toString();
+        String oldTxtAnimalSpeedValue = txtAnimalSpeedValue.getText().toString();
 
         //imgAnimal.setImageResource(animalImages[position]);
 
@@ -68,14 +69,25 @@ public class CustomizedListView extends BaseAdapter {
         imgAnimal.setImageBitmap(bm);*/
 
         imgAnimal.setImageBitmap(decodeSampledBitmapFromResource(context.getResources(),
-                animalImages[position], 30,30));
+                animalImages[position], 30, 30));
 
         txtAnimalName.setText(oldTxtAnimalNameValue + animalNames[position]);
+        txtAnimalPowerValue.setText(oldTxtAnimalPowerValue + animalsPower[position]);
+        txtAnimalSpeedValue.setText(oldTxtAnimalSpeedValue + animalsSpeed[position]);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(context, txtAnimalName.getText() + "\n" + txtAnimalPowerValue.getText() + "\n" +
+                        txtAnimalSpeedValue.getText(), Toast.LENGTH_LONG).show();
+
+            }
+        });
 
 
         return view;
     }
-
 
 
     public static int calculateInSampleSize(
@@ -117,6 +129,6 @@ public class CustomizedListView extends BaseAdapter {
         return BitmapFactory.decodeResource(res, resId, options);
     }
 
-    }
+}
 
 
